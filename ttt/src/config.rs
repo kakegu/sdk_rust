@@ -16,7 +16,7 @@ impl Default for Settings {
     fn default() -> Self {
         let hub_url;
         if cfg!(debug_assertions) {
-            hub_url = vec![String::from("119.28.86.54:6616")];
+            hub_url = vec![String::from("dev.trustnote.org:6616")];
         } else {
             hub_url = vec![String::from("raytest.trustnote.org:80")];
         }

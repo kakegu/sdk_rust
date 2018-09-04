@@ -138,17 +138,17 @@ fn info(db: &Connection, wallet_info: &WalletInfo) -> Result<()> {
     let stable = stable_balance as f64 / 1000_000.0;
     let pending = unstable_balance as f64 / 1000_000.0;
 
-    println!("\ncurrent wallet info:\n");
-    println!("device_address: {}", wallet_info.device_address);
-    println!("wallet_public_key: {}", wallet_info.wallet_pubk.to_string());
-    println!("└──wallet_id(0): {}", wallet_info.wallet_0_id);
-    println!("   └──address(0/0): {}", wallet_info._00_address);
-    println!("      ├── path: /m/44'/0'/0'/0/0");
-    println!("      ├── pubkey: {}", address_pubk);
-    println!("      └── balance: {:.6}", total);
-    println!("          ├── stable: {:.6}", stable);
-    println!("          └── pending: {:.6}", pending);
-
+    print!("{{");
+    // print!("'device_address': '{}',", wallet_info.device_address);
+    // print!("'wallet_public_key': '{}',", wallet_info.wallet_pubk.to_string());
+    // print!("'wallet_id': '{}',", wallet_info.wallet_0_id);
+    print!("'address': '{}',", wallet_info._00_address);
+    //println!("path: /m/44'/0'/0'/0/0");
+    //print!("pubkey: {},", address_pubk);
+    print!("'balance': {:.6},", total);
+    print!("'stable': {:.6},", stable);
+    print!("'pending': {:.6}", pending);
+    print!("}}");
     Ok(())
 }
 
@@ -204,18 +204,19 @@ fn history_log(
         }
 
         let history = &histories[index - 1];
-        if history.amount > 0 {
-            println!("FROM     : {}", history.address_from);
-        } else {
-            println!("TO       : {}", history.address_to);
-        }
-        println!("UNIT     : {}", history.unit);
-        println!("AMOUNT   : {:.6} MN", history.amount as f64 / 1_000_000.0);
-        println!(
-            "DATE     : {}",
-            Local.timestamp_millis(history.timestamp).naive_local()
-        );
-        println!("CONFIRMED: {}", history.confirmations);
+        // if history.amount > 0 {
+        //     println!("FROM     : {}", history.address_from);
+        // } else {
+        //     println!("TO       : {}", history.address_to);
+        // }
+        //print unit
+        print!("{}", history.unit);
+        // println!("AMOUNT   : {:.6} MN", history.amount as f64 / 1_000_000.0);
+        // println!(
+        //     "DATE     : {}",
+        //     Local.timestamp_millis(history.timestamp).naive_local()
+        // );
+        // println!("CONFIRMED: {}", history.confirmations);
     } else {
         for (id, history) in histories.iter().enumerate() {
             if id > max - 1 {
