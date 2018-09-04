@@ -138,6 +138,7 @@ fn info(db: &Connection, wallet_info: &WalletInfo) -> Result<()> {
     let stable = stable_balance as f64 / 1000_000.0;
     let pending = unstable_balance as f64 / 1000_000.0;
 
+    //test
     print!("{{");
     // print!("'device_address': '{}',", wallet_info.device_address);
     // print!("'wallet_public_key': '{}',", wallet_info.wallet_pubk.to_string());
